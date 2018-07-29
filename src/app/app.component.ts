@@ -12,6 +12,19 @@ export class AppComponent {
 
   ngOnInit() {
     this.video = this.videoElement.nativeElement;
+
+    var video = document.querySelector('video')
+    
+            var constraints = {
+                audio: false,
+                video: {
+                    facingMode: 'user'
+                }
+            }
+    
+            navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+                video.srcObject = stream
+            })
   }
 
   start() {
@@ -34,4 +47,7 @@ export class AppComponent {
       this.video.play();
     });
   }
+
+
+
 }
